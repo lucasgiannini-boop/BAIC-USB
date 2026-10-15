@@ -1,6 +1,7 @@
 package com.baicusb.diagnostico;
 
 import android.app.Activity;
+import androidx.core.content.ContextCompat;
 import android.app.PendingIntent;
 import android.content.*;
 import android.content.pm.PackageManager;
@@ -71,8 +72,7 @@ public class MainActivity extends Activity {
         filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
         filter.addAction(UsbManager.ACTION_USB_ACCESSORY_ATTACHED);
         filter.addAction(UsbManager.ACTION_USB_ACCESSORY_DETACHED);
-        if (Build.VERSION.SDK_INT >= 33) registerReceiver(receiver, filter, Context.RECEIVER_NOT_EXPORTED);
-        else registerReceiver(receiver, filter);
+        ContextCompat.registerReceiver(this, receiver, filter, ContextCompat.RECEIVER_NOT_EXPORTED);
         refresh();
     }
 
